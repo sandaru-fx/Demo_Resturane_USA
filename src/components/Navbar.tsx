@@ -17,7 +17,7 @@ export default function Navbar() {
   const location = useLocation();
   const lastScrollY = useRef(0);
 
-  const isLightNav = scrolled && !mobileOpen;
+  const isLightNav = !mobileOpen;
 
   useEffect(() => {
     const onScroll = () => {
