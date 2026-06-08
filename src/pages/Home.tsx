@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import ThreeScene from "../components/ThreeScene";
+
+
 
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
@@ -16,15 +17,16 @@ export default function Home() {
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden grain-overlay">
         <div className="absolute inset-0">
           <img
-            src="https://images.pexels.com/photos/16985200/pexels-photo-16985200.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1400&w=2400"
+            src="/hero-restaurant.png"
             alt="Luxury fine dining restaurant interior"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-stone-900" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-stone-900/60" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent" />
         </div>
 
-        <ThreeScene />
+
+
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 py-32 text-center lg:text-left w-full">
           <motion.div

@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const navLinks = [
   { path: "/", label: "Home" },
@@ -12,12 +12,25 @@ const navLinks = [
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", onScroll);
+    const onScroll = () => {
+      const currentY = window.scrollY;
+      setScrolled(currentY > 50);
+
+      // Hide navbar when scrolling down, show when scrolling up
+      if (currentY > 100) {
+        setHidden(currentY > lastScrollY.current);
+      } else {
+        setHidden(false);
+      }
+      lastScrollY.current = currentY;
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
@@ -29,12 +42,12 @@ export default function Navbar() {
     <>
       <motion.nav
         initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        animate={{ y: hidden && !mobileOpen ? -100 : 0 }}
+        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 backdrop-blur-xl ${
           scrolled
-            ? "bg-noir/95 backdrop-blur-xl border-b border-black/5 py-4 shadow-sm"
-            : "bg-transparent py-6"
+            ? "bg-noir/95 border-b border-white/10 py-4 shadow-lg"
+            : "bg-black/60 py-6"
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between">
@@ -53,7 +66,7 @@ export default function Navbar() {
               <Link
                 key={link.path}
                 to={link.path}
-                className="relative text-sm tracking-wider uppercase text-cream/60 hover:text-cream transition-colors duration-300 group"
+                className="relative text-sm tracking-wider uppercase text-cream hover:text-gold-soft transition-colors duration-300 group"
               >
                 {link.label}
                 {location.pathname === link.path && (
