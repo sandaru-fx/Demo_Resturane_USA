@@ -38,6 +38,16 @@ export const menuData: MenuSection[] = [
         price: "$17",
         tag: "Vegan",
       },
+      {
+        name: "Wagyu Beef Tartare",
+        description: "Quail egg, truffle aioli, crispy capers, toasted brioche",
+        price: "$26",
+      },
+      {
+        name: "Oysters on the Half Shell",
+        description: "Half dozen, mignonette, fresh horseradish, lemon",
+        price: "$22",
+      },
     ],
   },
   {
@@ -70,6 +80,16 @@ export const menuData: MenuSection[] = [
         description: "Cauliflower three ways, brown butter, caper berries, hazelnut",
         price: "$44",
       },
+      {
+        name: "Pan-Seared Halibut",
+        description: "Saffron risotto, charred asparagus, lemon beurre blanc",
+        price: "$48",
+      },
+      {
+        name: "Herb-Crusted Lamb Rack",
+        description: "Mint pea purée, roasted root vegetables, rosemary jus",
+        price: "$54",
+      },
     ],
   },
   {
@@ -92,6 +112,16 @@ export const menuData: MenuSection[] = [
         description: "Three artisanal cheeses, honeycomb, seasonal preserves, walnut bread",
         price: "$22",
       },
+      {
+        name: "Vanilla Bean Crème Brûlée",
+        description: "Fresh berries, almond biscotti",
+        price: "$15",
+      },
+      {
+        name: "Pistachio Mille-Feuille",
+        description: "Layers of puff pastry, pistachio mousseline, raspberry coulis",
+        price: "$16",
+      },
     ],
   },
   {
@@ -113,6 +143,16 @@ export const menuData: MenuSection[] = [
         name: "Midnight in Paris",
         description: "Cognac, crème de violette, champagne, lavender mist",
         price: "$21",
+      },
+      {
+        name: "Spicy Mezcal Margarita",
+        description: "Mezcal, jalapeño, lime, agave, tajin rim",
+        price: "$18",
+      },
+      {
+        name: "Espresso Martini",
+        description: "Vodka, fresh espresso, coffee liqueur, vanilla",
+        price: "$19",
       },
     ],
   },

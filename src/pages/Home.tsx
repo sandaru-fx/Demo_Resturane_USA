@@ -356,7 +356,11 @@ export default function Home() {
             </h2>
             <p className="text-cream/70 text-lg max-w-xl mb-10 mx-auto lg:mx-0">
               We recommend reservations at least two weeks in advance. Private dining and
-              special occasions welcome — please contact our events team.
+              special occasions welcome — please explore our{" "}
+              <Link to="/events" className="text-gold hover:text-gold-soft underline decoration-gold/30 underline-offset-4 transition-colors">
+                events
+              </Link>{" "}
+              offerings.
             </p>
             <Link
               to="/reservations"

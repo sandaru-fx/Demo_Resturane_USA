@@ -133,9 +133,16 @@ export default function Menu() {
                           className="group relative"
                         >
                           <div className="flex items-baseline gap-4 mb-2">
-                            <h3 className="font-display text-xl md:text-2xl text-cream group-hover:text-gold transition-colors">
-                              {item.name}
-                            </h3>
+                            <div className="flex items-center gap-3">
+                              <h3 className="font-display text-xl md:text-2xl text-cream group-hover:text-gold transition-colors">
+                                {item.name}
+                              </h3>
+                              {item.tag && (
+                                <span className="text-[10px] tracking-[0.2em] uppercase text-gold border border-gold/40 px-2 py-0.5 bg-noir">
+                                  {item.tag}
+                                </span>
+                              )}
+                            </div>
                             <div className="flex-1 border-b border-dotted border-black/20 mb-2" />
                             <span className="font-display text-xl md:text-2xl text-gold whitespace-nowrap">
                               {item.price}
@@ -144,11 +151,6 @@ export default function Menu() {
                           <p className="text-cream/60 text-sm leading-relaxed max-w-2xl pr-4">
                             {item.description}
                           </p>
-                          {item.tag && (
-                            <span className="absolute -top-1 right-0 text-[10px] tracking-[0.2em] uppercase text-gold border border-gold/40 px-2 py-0.5 bg-noir">
-                              {item.tag}
-                            </span>
-                          )}
                         </motion.div>
                       ))}
                     </div>

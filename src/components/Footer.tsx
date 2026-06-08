@@ -39,6 +39,7 @@ export default function Footer() {
               {[
                 { label: "Menu", path: "/menu" },
                 { label: "About", path: "/about" },
+                { label: "Events", path: "/events" },
                 { label: "Gallery", path: "/gallery" },
                 { label: "Contact", path: "/contact" },
                 { label: "Reservations", path: "/reservations" },
