@@ -61,18 +61,18 @@ export default function Home() {
               >
                 <Link
                   to="/reservations"
-                  className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-gold text-white text-sm tracking-[0.2em] uppercase hover:bg-gold-soft transition-colors duration-500 shadow-md"
+                  className="group relative z-[1] isolate overflow-hidden inline-flex items-center justify-center gap-3 px-8 py-4 bg-gold text-white text-sm tracking-[0.12em] sm:tracking-[0.2em] hover:bg-gold-soft transition-colors duration-500 shadow-md"
                 >
-                  Reserve a Table
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="group-hover:translate-x-1 transition-transform" aria-hidden="true">
+                  <span className="relative">RESERVE A TABLE</span>
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="group-hover:translate-x-1 transition-transform shrink-0" aria-hidden="true">
                     <path d="M2 8h12m0 0l-5-5m5 5l-5 5" stroke="currentColor" strokeWidth="1.5" />
                   </svg>
                 </Link>
                 <Link
                   to="/menu"
-                  className="inline-flex items-center justify-center gap-3 px-8 py-4 border border-gold/40 text-cream text-sm tracking-[0.2em] uppercase hover:border-gold hover:text-gold transition-all duration-500 bg-white/50"
+                  className="relative z-[2] isolate overflow-hidden inline-flex items-center justify-center px-8 py-4 border border-gold/40 text-cream text-sm tracking-[0.12em] sm:tracking-[0.2em] hover:border-gold hover:text-gold transition-colors duration-500 bg-noir"
                 >
-                  View Menu
+                  <span className="relative">VIEW MENU</span>
                 </Link>
               </motion.div>
             </div>
