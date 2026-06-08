@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
+import OptimizedImage from "../components/OptimizedImage";
+import { images } from "../data/images";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -16,14 +18,17 @@ export default function Contact() {
   };
 
   return (
-    <div className="bg-noir pt-32 min-h-screen">
+    <div className="bg-noir pt-24 sm:pt-32 min-h-screen">
       {/* HERO - dark */}
-      <section className="relative py-20 px-6 lg:px-12 bg-stone-900 overflow-hidden">
+      <section className="relative py-16 sm:py-20 px-4 sm:px-6 lg:px-12 bg-stone-900 overflow-hidden">
         <div className="absolute inset-0 opacity-20">
-          <img
-            src="https://images.pexels.com/photos/34723813/pexels-photo-34723813.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=2000"
+          <OptimizedImage
+            src={images.diningRoom}
             alt=""
             className="w-full h-full object-cover"
+            priority
+            width={2000}
+            height={800}
           />
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-stone-900/60 to-stone-900" />
@@ -40,7 +45,7 @@ export default function Contact() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="font-display text-5xl md:text-7xl text-white leading-tight mb-6"
+            className="font-display text-4xl sm:text-5xl md:text-7xl text-white leading-tight mb-6"
           >
             Get in <span className="italic gold-gradient">Touch</span>
           </motion.h1>
@@ -57,7 +62,7 @@ export default function Contact() {
       </section>
 
       {/* CONTACT INFO & FORM - light */}
-      <section className="py-20 px-6 lg:px-12 bg-noir">
+      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-12 bg-noir">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
           {/* INFO */}
           <motion.div
@@ -260,10 +265,12 @@ export default function Contact() {
           </div>
 
           <div className="relative aspect-[16/9] bg-noir-card border border-black/10 flex items-center justify-center overflow-hidden shadow-md">
-            <img
-              src="https://images.pexels.com/photos/34723813/pexels-photo-34723813.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=1600"
+            <OptimizedImage
+              src={images.diningRoom}
               alt="Restaurant location"
               className="w-full h-full object-cover opacity-40"
+              width={1600}
+              height={800}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-noir-card via-noir-card/40 to-transparent" />
             <div className="absolute inset-0 flex items-center justify-center">

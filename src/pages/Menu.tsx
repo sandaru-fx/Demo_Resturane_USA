@@ -1,35 +1,40 @@
 import { motion } from "framer-motion";
+import OptimizedImage from "../components/OptimizedImage";
+import { images } from "../data/images";
 import { menuData } from "../data/menuData";
 
 const sectionImages: Record<string, { img: string; alt: string }> = {
   Starters: {
-    img: "https://images.pexels.com/photos/15801057/pexels-photo-15801057.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=900",
+    img: images.springStarters,
     alt: "Elegant starters plating",
   },
   Mains: {
-    img: "https://images.pexels.com/photos/8697540/pexels-photo-8697540.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=900",
+    img: images.dryAgedRibeye,
     alt: "Gourmet main course",
   },
   Desserts: {
-    img: "https://images.pexels.com/photos/13878326/pexels-photo-13878326.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=900",
+    img: images.chocolateSouffle,
     alt: "Artisan dessert",
   },
   Cocktails: {
-    img: "https://images.pexels.com/photos/31057721/pexels-photo-31057721.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=900",
+    img: images.craftCocktails,
     alt: "Hand-crafted cocktails",
   },
 };
 
 export default function Menu() {
   return (
-    <div className="bg-noir pt-32">
+    <div className="bg-noir pt-24 sm:pt-32">
       {/* HERO - dark for drama */}
-      <section className="relative py-20 px-6 lg:px-12 overflow-hidden bg-stone-900">
+      <section className="relative py-16 sm:py-20 px-4 sm:px-6 lg:px-12 overflow-hidden bg-stone-900">
         <div className="absolute inset-0 opacity-30">
-          <img
-            src="https://images.pexels.com/photos/34723813/pexels-photo-34723813.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=2000"
+          <OptimizedImage
+            src={images.diningRoom}
             alt=""
             className="w-full h-full object-cover"
+            priority
+            width={2000}
+            height={800}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-stone-900/50 via-stone-900/80 to-stone-900" />
         </div>
@@ -46,7 +51,7 @@ export default function Menu() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="font-display text-5xl md:text-7xl text-white leading-tight mb-6"
+            className="font-display text-4xl sm:text-5xl md:text-7xl text-white leading-tight mb-6"
           >
             A Curated <span className="italic gold-gradient">Journey</span>
           </motion.h1>
@@ -63,7 +68,7 @@ export default function Menu() {
       </section>
 
       {/* MENU SECTIONS - alternating with images */}
-      <section className="py-20 px-6 lg:px-12">
+      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-12">
         <div className="max-w-7xl mx-auto">
           {menuData.map((section, sectionIndex) => {
             const isReversed = sectionIndex % 2 === 1;
@@ -86,10 +91,12 @@ export default function Menu() {
                     transition={{ duration: 1 }}
                     className="relative aspect-[4/5] overflow-hidden shadow-2xl lg:[direction:ltr]"
                   >
-                    <img
+                    <OptimizedImage
                       src={sectionImg.img}
                       alt={sectionImg.alt}
                       className="w-full h-full object-cover hover:scale-105 transition-transform duration-[1500ms]"
+                      width={900}
+                      height={1125}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
                     <div className="absolute top-6 left-6 lg:[direction:ltr]">
@@ -163,10 +170,12 @@ export default function Menu() {
             transition={{ duration: 1 }}
             className="relative aspect-square overflow-hidden shadow-2xl"
           >
-            <img
-              src="https://images.pexels.com/photos/6111928/pexels-photo-6111928.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=900"
+            <OptimizedImage
+              src={images.gourmetPlating}
               alt="Tasting menu"
               className="w-full h-full object-cover"
+              width={900}
+              height={900}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
             <div className="absolute bottom-6 left-6">

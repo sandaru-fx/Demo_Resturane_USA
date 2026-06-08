@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import OptimizedImage from "../components/OptimizedImage";
+import { images } from "../data/images";
 
 
 
@@ -14,12 +16,15 @@ export default function Home() {
   return (
     <div className="bg-noir">
       {/* HERO SECTION - stays dark for drama */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden grain-overlay">
+      <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden grain-overlay">
         <div className="absolute inset-0">
-          <img
-            src="/hero-restaurant.png"
+          <OptimizedImage
+            src={images.heroRestaurant}
             alt="Luxury fine dining restaurant interior"
             className="w-full h-full object-cover"
+            priority
+            width={2000}
+            height={1200}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-stone-900/60" />
           <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent" />
@@ -28,14 +33,14 @@ export default function Home() {
 
 
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 py-32 text-center lg:text-left w-full">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 pt-28 pb-20 sm:py-32 text-center lg:text-left w-full">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
             className="inline-block mb-6"
           >
-            <span className="text-xs tracking-[0.4em] uppercase text-gold-soft border border-gold-soft/40 px-4 py-2">
+            <span className="text-[10px] sm:text-xs tracking-[0.3em] sm:tracking-[0.4em] uppercase text-gold-soft border border-gold-soft/40 px-3 sm:px-4 py-2">
               Michelin Recommended · Manhattan
             </span>
           </motion.div>
@@ -44,7 +49,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="font-display text-5xl md:text-7xl lg:text-8xl text-white leading-[0.95] mb-6 max-w-4xl"
+            className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-white leading-[0.95] mb-6 max-w-4xl"
           >
             A Culinary <span className="italic gold-gradient">Journey</span>
             <br />
@@ -55,7 +60,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.5 }}
-            className="text-white/80 text-lg md:text-xl max-w-xl mb-10 mx-auto lg:mx-0"
+            className="text-white/80 text-base sm:text-lg md:text-xl max-w-xl mb-8 sm:mb-10 mx-auto lg:mx-0 px-2 sm:px-0"
           >
             French-inspired contemporary cuisine, reimagined nightly by Chef Antoine Laurent
             using ingredients sourced from the world's finest artisans.
@@ -96,7 +101,7 @@ export default function Home() {
       </section>
 
       {/* INTRO SECTION - light */}
-      <section className="py-32 px-6 lg:px-12 bg-noir">
+      <section className="py-20 md:py-32 px-4 sm:px-6 lg:px-12 bg-noir">
         <div className="max-w-4xl mx-auto text-center">
           <div className="divider-ornament mb-8">
             <span className="text-xs tracking-[0.4em] uppercase">Welcome</span>
@@ -119,7 +124,7 @@ export default function Home() {
       </section>
 
       {/* SIGNATURE DISHES */}
-      <section className="py-32 px-6 lg:px-12 bg-noir-soft">
+      <section className="py-20 md:py-32 px-4 sm:px-6 lg:px-12 bg-noir-soft">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
             <div className="divider-ornament mb-8">
@@ -138,19 +143,19 @@ export default function Home() {
               {
                 name: "Dry-Aged Ribeye",
                 desc: "45-day aged prime beef, bone marrow butter, charred shallot",
-                img: "https://images.pexels.com/photos/8697540/pexels-photo-8697540.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=800",
+                img: images.dryAgedRibeye,
                 price: "$68",
               },
               {
                 name: "Hand-Rolled Tagliatelle",
                 desc: "Truffle cream, wild mushroom ragù, 24-month parmigiano",
-                img: "https://images.pexels.com/photos/29039073/pexels-photo-29039073.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=800",
+                img: images.handRolledPasta,
                 price: "$38",
               },
               {
                 name: "Valrhona Soufflé",
                 desc: "Single-origin dark chocolate, crème anglaise, gold leaf",
-                img: "https://images.pexels.com/photos/13878326/pexels-photo-13878326.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=800",
+                img: images.chocolateSouffle,
                 price: "$18",
               },
             ].map((dish, i) => (
@@ -163,10 +168,12 @@ export default function Home() {
                 className="group relative overflow-hidden bg-noir-card shadow-sm hover:shadow-xl transition-shadow duration-500"
               >
                 <div className="aspect-[4/5] overflow-hidden">
-                  <img
+                  <OptimizedImage
                     src={dish.img}
                     alt={dish.name}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1500ms]"
+                    width={800}
+                    height={1000}
                   />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
@@ -196,7 +203,7 @@ export default function Home() {
       </section>
 
       {/* CHEF SECTION */}
-      <section className="py-32 px-6 lg:px-12 bg-noir">
+      <section className="py-20 md:py-32 px-4 sm:px-6 lg:px-12 bg-noir">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <motion.div
             initial={{ opacity: 0, x: -40 }}
@@ -205,10 +212,12 @@ export default function Home() {
             transition={{ duration: 1 }}
             className="relative aspect-[3/4] overflow-hidden shadow-2xl"
           >
-            <img
-              src="https://images.pexels.com/photos/4253130/pexels-photo-4253130.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=900"
+            <OptimizedImage
+              src={images.chefAntoine}
               alt="Chef Antoine Laurent"
               className="w-full h-full object-cover"
+              width={900}
+              height={1200}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
           </motion.div>
@@ -248,7 +257,7 @@ export default function Home() {
       </section>
 
       {/* EXPERIENCE SECTION */}
-      <section className="py-32 px-6 lg:px-12 bg-noir-soft">
+      <section className="py-20 md:py-32 px-4 sm:px-6 lg:px-12 bg-noir-soft">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
             <div className="divider-ornament mb-8">
@@ -295,12 +304,14 @@ export default function Home() {
       </section>
 
       {/* TESTIMONIAL - stays dark */}
-      <section className="py-32 px-6 lg:px-12 relative overflow-hidden bg-stone-900">
+      <section className="py-20 md:py-32 px-4 sm:px-6 lg:px-12 relative overflow-hidden bg-stone-900">
         <div className="absolute inset-0 opacity-30">
-          <img
-            src="https://images.pexels.com/photos/34723813/pexels-photo-34723813.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=1600"
+          <OptimizedImage
+            src={images.diningRoom}
             alt=""
             className="w-full h-full object-cover"
+            width={1600}
+            height={800}
           />
         </div>
         <div className="absolute inset-0 bg-stone-900/70" />
@@ -326,12 +337,14 @@ export default function Home() {
       </section>
 
       {/* CTA SECTION - stays dark for impact */}
-      <section className="relative py-32 px-6 lg:px-12 overflow-hidden">
+      <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-12 overflow-hidden">
         <div className="absolute inset-0">
-          <img
-            src="https://images.pexels.com/photos/27138849/pexels-photo-27138849.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1000&w=2000"
+          <OptimizedImage
+            src={images.privateDining}
             alt="Elegant table setting"
             className="w-full h-full object-cover"
+            width={2000}
+            height={1000}
           />
           <div className="absolute inset-0 bg-black/80" />
         </div>

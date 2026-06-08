@@ -1,15 +1,20 @@
 import { motion } from "framer-motion";
+import OptimizedImage from "../components/OptimizedImage";
+import { images } from "../data/images";
 
 export default function About() {
   return (
-    <div className="bg-noir pt-32">
+    <div className="bg-noir pt-24 sm:pt-32">
       {/* HERO - dark */}
-      <section className="relative py-20 px-6 lg:px-12 bg-stone-900 overflow-hidden">
+      <section className="relative py-16 sm:py-20 px-4 sm:px-6 lg:px-12 bg-stone-900 overflow-hidden">
         <div className="absolute inset-0 opacity-20">
-          <img
-            src="https://images.pexels.com/photos/4253130/pexels-photo-4253130.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=2000"
+          <OptimizedImage
+            src={images.chefAntoine}
             alt=""
             className="w-full h-full object-cover"
+            priority
+            width={2000}
+            height={800}
           />
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-stone-900/60 to-stone-900" />
@@ -26,7 +31,7 @@ export default function About() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="font-display text-5xl md:text-7xl text-white leading-tight mb-6"
+            className="font-display text-4xl sm:text-5xl md:text-7xl text-white leading-tight mb-6"
           >
             A Legacy of <span className="italic gold-gradient">Passion</span>
           </motion.h1>
@@ -43,7 +48,7 @@ export default function About() {
       </section>
 
       {/* CHEF STORY - light */}
-      <section className="py-20 px-6 lg:px-12 bg-noir">
+      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-12 bg-noir">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <motion.div
             initial={{ opacity: 0, x: -40 }}
@@ -52,10 +57,12 @@ export default function About() {
             transition={{ duration: 1 }}
             className="relative aspect-[3/4] overflow-hidden shadow-2xl"
           >
-            <img
-              src="https://images.pexels.com/photos/4253130/pexels-photo-4253130.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=900"
+            <OptimizedImage
+              src={images.chefAntoine}
               alt="Chef Antoine Laurent"
               className="w-full h-full object-cover"
+              width={900}
+              height={1200}
             />
             <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
               <p className="font-display text-2xl text-white">Chef Antoine Laurent</p>
@@ -106,7 +113,7 @@ export default function About() {
       </section>
 
       {/* PHILOSOPHY - soft cream */}
-      <section className="py-32 px-6 lg:px-12 bg-noir-soft">
+      <section className="py-20 md:py-32 px-4 sm:px-6 lg:px-12 bg-noir-soft">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-20">
             <div className="divider-ornament mb-8">
@@ -153,7 +160,7 @@ export default function About() {
       </section>
 
       {/* TEAM - light */}
-      <section className="py-32 px-6 lg:px-12 bg-noir">
+      <section className="py-20 md:py-32 px-4 sm:px-6 lg:px-12 bg-noir">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <div className="divider-ornament mb-8">
@@ -173,17 +180,17 @@ export default function About() {
               {
                 name: "Antoine Laurent",
                 role: "Executive Chef & Founder",
-                img: "https://images.pexels.com/photos/4253130/pexels-photo-4253130.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=600&w=600",
+                img: images.chefAntoine,
               },
               {
                 name: "Sophie Chen",
                 role: "Head Sommelier",
-                img: "https://images.pexels.com/photos/31057721/pexels-photo-31057721.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=600&w=600",
+                img: images.craftCocktails,
               },
               {
                 name: "Marcus Williams",
                 role: "Pastry Chef",
-                img: "https://images.pexels.com/photos/13878326/pexels-photo-13878326.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=600&w=600",
+                img: images.chocolateSouffle,
               },
             ].map((member, i) => (
               <motion.div
@@ -195,10 +202,12 @@ export default function About() {
                 className="group"
               >
                 <div className="relative aspect-[3/4] overflow-hidden mb-6 shadow-lg">
-                  <img
+                  <OptimizedImage
                     src={member.img}
                     alt={member.name}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1500ms]"
+                    width={600}
+                    height={800}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 </div>
@@ -211,7 +220,7 @@ export default function About() {
       </section>
 
       {/* AWARDS - soft */}
-      <section className="py-32 px-6 lg:px-12 bg-noir-soft">
+      <section className="py-20 md:py-32 px-4 sm:px-6 lg:px-12 bg-noir-soft">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
             <div className="divider-ornament mb-8">

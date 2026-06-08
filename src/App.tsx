@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, MotionConfig, motion } from "framer-motion";
 import { useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -45,14 +45,19 @@ function AnimatedRoutes() {
 export default function App() {
   return (
     <BrowserRouter>
-      <ScrollToTop />
-      <div className="min-h-screen bg-noir text-cream">
-        <Navbar />
-        <main>
-          <AnimatedRoutes />
-        </main>
-        <Footer />
-      </div>
+      <MotionConfig reducedMotion="user">
+        <ScrollToTop />
+        <a href="#main-content" className="skip-link">
+          Skip to main content
+        </a>
+        <div className="min-h-screen bg-noir text-cream">
+          <Navbar />
+          <main id="main-content" tabIndex={-1}>
+            <AnimatedRoutes />
+          </main>
+          <Footer />
+        </div>
+      </MotionConfig>
     </BrowserRouter>
   );
 }

@@ -1,76 +1,53 @@
-import { motion } from "framer-motion";
-import { useState } from "react";
-import { AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import OptimizedImage from "../components/OptimizedImage";
+import { images } from "../data/images";
 
 const galleryItems = [
-  {
-    img: "https://images.pexels.com/photos/6111928/pexels-photo-6111928.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1000&w=1000",
-    category: "Cuisine",
-    title: "Gourmet Plating",
-  },
-  {
-    img: "https://images.pexels.com/photos/8697540/pexels-photo-8697540.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1000&w=1000",
-    category: "Cuisine",
-    title: "Dry-Aged Ribeye",
-  },
-  {
-    img: "https://images.pexels.com/photos/34723813/pexels-photo-34723813.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1000&w=1500",
-    category: "Ambiance",
-    title: "Dining Room",
-  },
-  {
-    img: "https://images.pexels.com/photos/29039073/pexels-photo-29039073.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1000&w=1000",
-    category: "Cuisine",
-    title: "Hand-Rolled Pasta",
-  },
-  {
-    img: "https://images.pexels.com/photos/4253130/pexels-photo-4253130.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1000&w=800",
-    category: "Kitchen",
-    title: "Behind the Scenes",
-  },
-  {
-    img: "https://images.pexels.com/photos/13878326/pexels-photo-13878326.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1000&w=1000",
-    category: "Cuisine",
-    title: "Chocolate Soufflé",
-  },
-  {
-    img: "https://images.pexels.com/photos/7627414/pexels-photo-7627414.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1000&w=1000",
-    category: "Cuisine",
-    title: "Atlantic Salmon",
-  },
-  {
-    img: "https://images.pexels.com/photos/31057721/pexels-photo-31057721.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1000&w=1000",
-    category: "Bar",
-    title: "Craft Cocktails",
-  },
-  {
-    img: "https://images.pexels.com/photos/15801057/pexels-photo-15801057.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1000&w=1000",
-    category: "Cuisine",
-    title: "Spring Starters",
-  },
-  {
-    img: "https://images.pexels.com/photos/27138849/pexels-photo-27138849.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1000&w=1500",
-    category: "Ambiance",
-    title: "Private Dining",
-  },
+  { img: images.gourmetPlating, category: "Cuisine", title: "Gourmet Plating" },
+  { img: images.dryAgedRibeye, category: "Cuisine", title: "Dry-Aged Ribeye" },
+  { img: images.diningRoom, category: "Ambiance", title: "Dining Room" },
+  { img: images.handRolledPasta, category: "Cuisine", title: "Hand-Rolled Pasta" },
+  { img: images.chefAntoine, category: "Kitchen", title: "Behind the Scenes" },
+  { img: images.chocolateSouffle, category: "Cuisine", title: "Chocolate Soufflé" },
+  { img: images.atlanticSalmon, category: "Cuisine", title: "Atlantic Salmon" },
+  { img: images.craftCocktails, category: "Bar", title: "Craft Cocktails" },
+  { img: images.springStarters, category: "Cuisine", title: "Spring Starters" },
+  { img: images.privateDining, category: "Ambiance", title: "Private Dining" },
 ];
 
 export default function Gallery() {
   const [filter, setFilter] = useState("All");
   const [lightbox, setLightbox] = useState<number | null>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
 
   const categories = ["All", "Cuisine", "Ambiance", "Kitchen", "Bar"];
   const filtered = filter === "All" ? galleryItems : galleryItems.filter((i) => i.category === filter);
 
+  useEffect(() => {
+    if (lightbox === null) return;
+
+    closeButtonRef.current?.focus();
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setLightbox(null);
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [lightbox]);
+
   return (
-    <div className="bg-noir pt-32 min-h-screen">
-      {/* HERO - dark */}
-      <section className="relative py-20 px-6 lg:px-12 bg-stone-900 overflow-hidden">
+    <div className="bg-noir pt-24 sm:pt-32 min-h-screen">
+      <section className="relative py-16 sm:py-20 px-4 sm:px-6 lg:px-12 bg-stone-900 overflow-hidden">
         <div className="absolute inset-0 opacity-20">
-          <img
-            src="https://images.pexels.com/photos/27138849/pexels-photo-27138849.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=2000"
+          <OptimizedImage
+            src={images.privateDining}
             alt=""
             className="w-full h-full object-cover"
+            priority
+            width={2000}
+            height={800}
           />
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-stone-900/60 to-stone-900" />
@@ -87,7 +64,7 @@ export default function Gallery() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="font-display text-5xl md:text-7xl text-white leading-tight mb-6"
+            className="font-display text-4xl sm:text-5xl md:text-7xl text-white leading-tight mb-6"
           >
             Moments of <span className="italic gold-gradient">Beauty</span>
           </motion.h1>
@@ -102,13 +79,14 @@ export default function Gallery() {
         </div>
       </section>
 
-      {/* FILTERS */}
-      <section className="px-6 lg:px-12 py-16 bg-noir">
-        <div className="max-w-6xl mx-auto flex flex-wrap justify-center gap-3">
+      <section className="px-4 sm:px-6 lg:px-12 py-12 sm:py-16 bg-noir" aria-label="Gallery filters">
+        <div className="max-w-6xl mx-auto flex flex-wrap justify-center gap-3" role="group" aria-label="Filter gallery by category">
           {categories.map((cat) => (
             <button
               key={cat}
+              type="button"
               onClick={() => setFilter(cat)}
+              aria-pressed={filter === cat}
               className={`px-6 py-2 text-xs tracking-[0.2em] uppercase transition-all duration-300 border ${
                 filter === cat
                   ? "bg-gold text-white border-gold"
@@ -121,45 +99,54 @@ export default function Gallery() {
         </div>
       </section>
 
-      {/* GALLERY GRID */}
-      <section className="px-6 lg:px-12 pb-32 bg-noir">
+      <section className="px-4 sm:px-6 lg:px-12 pb-20 md:pb-32 bg-noir" aria-label="Photo gallery">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           <AnimatePresence mode="popLayout">
             {filtered.map((item, i) => (
               <motion.div
-                key={item.img}
+                key={item.title}
                 layout
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.4, delay: i * 0.05 }}
-                onClick={() => setLightbox(i)}
-                className={`group relative overflow-hidden cursor-pointer shadow-md ${
+                className={`group relative overflow-hidden shadow-md ${
                   i === 2 || i === 9 ? "md:col-span-2" : ""
                 }`}
               >
-                <div className={`aspect-square ${i === 2 || i === 9 ? "md:aspect-[2/1]" : ""}`}>
-                  <img
-                    src={item.img}
-                    alt={item.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1500ms]"
-                  />
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-6 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                  <p className="text-gold-soft text-xs tracking-[0.2em] uppercase mb-2">{item.category}</p>
-                  <h3 className="font-display text-2xl text-white">{item.title}</h3>
-                </div>
+                <button
+                  type="button"
+                  onClick={() => setLightbox(i)}
+                  className="w-full text-left cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
+                  aria-label={`View larger image: ${item.title}, ${item.category}`}
+                >
+                  <div className={`aspect-square ${i === 2 || i === 9 ? "md:aspect-[2/1]" : ""}`}>
+                    <OptimizedImage
+                      src={item.img}
+                      alt={item.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1500ms]"
+                      width={1000}
+                      height={i === 2 || i === 9 ? 500 : 1000}
+                    />
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-6 group-hover:translate-y-0 group-focus-within:translate-y-0 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-all duration-500">
+                    <p className="text-gold-soft text-xs tracking-[0.2em] uppercase mb-2">{item.category}</p>
+                    <h3 className="font-display text-2xl text-white">{item.title}</h3>
+                  </div>
+                </button>
               </motion.div>
             ))}
           </AnimatePresence>
         </div>
       </section>
 
-      {/* LIGHTBOX */}
       <AnimatePresence>
         {lightbox !== null && (
           <motion.div
+            role="dialog"
+            aria-modal="true"
+            aria-label={`Image viewer: ${filtered[lightbox].title}`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -167,22 +154,33 @@ export default function Gallery() {
             className="fixed inset-0 z-[100] bg-stone-900/95 backdrop-blur-xl flex items-center justify-center p-6 cursor-pointer"
           >
             <button
-              onClick={() => setLightbox(null)}
-              className="absolute top-6 right-6 text-white hover:text-gold transition-colors"
-              aria-label="Close"
+              ref={closeButtonRef}
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                setLightbox(null);
+              }}
+              className="absolute top-6 right-6 text-white hover:text-gold transition-colors p-2"
+              aria-label="Close image viewer"
             >
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
                 <path d="M6 6l12 12M18 6L6 18" />
               </svg>
             </button>
-            <motion.img
+            <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              src={filtered[lightbox].img}
-              alt={filtered[lightbox].title}
-              className="max-w-full max-h-[90vh] object-contain"
-            />
+              onClick={(e) => e.stopPropagation()}
+              className="cursor-default"
+            >
+              <OptimizedImage
+                src={filtered[lightbox].img}
+                alt={filtered[lightbox].title}
+                className="max-w-full max-h-[90vh] object-contain"
+                priority
+              />
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

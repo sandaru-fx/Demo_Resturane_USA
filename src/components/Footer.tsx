@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
-    <footer className="bg-stone-900 text-white pt-20 pb-8 px-6 lg:px-12">
+    <footer className="bg-stone-900 text-white pt-16 sm:pt-20 pb-8 px-4 sm:px-6 lg:px-12" aria-label="Site footer">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="md:col-span-2">
@@ -24,6 +24,7 @@ export default function Footer() {
                 <a
                   key={social}
                   href="#"
+                  aria-label={`Follow us on ${social}`}
                   className="text-xs tracking-[0.2em] uppercase text-white/50 hover:text-gold transition-colors"
                 >
                   {social}

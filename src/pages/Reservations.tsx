@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
+import OptimizedImage from "../components/OptimizedImage";
+import { images } from "../data/images";
 
 export default function Reservations() {
   const [formData, setFormData] = useState({
@@ -25,14 +27,17 @@ export default function Reservations() {
   ];
 
   return (
-    <div className="bg-noir pt-32 min-h-screen">
+    <div className="bg-noir pt-24 sm:pt-32 min-h-screen">
       {/* HERO - dark */}
-      <section className="relative py-20 px-6 lg:px-12 bg-stone-900 overflow-hidden">
+      <section className="relative py-16 sm:py-20 px-4 sm:px-6 lg:px-12 bg-stone-900 overflow-hidden">
         <div className="absolute inset-0 opacity-20">
-          <img
-            src="https://images.pexels.com/photos/27138849/pexels-photo-27138849.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=2000"
+          <OptimizedImage
+            src={images.privateDining}
             alt=""
             className="w-full h-full object-cover"
+            priority
+            width={2000}
+            height={800}
           />
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-stone-900/60 to-stone-900" />
@@ -49,7 +54,7 @@ export default function Reservations() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="font-display text-5xl md:text-7xl text-white leading-tight mb-6"
+            className="font-display text-4xl sm:text-5xl md:text-7xl text-white leading-tight mb-6"
           >
             Reserve Your <span className="italic gold-gradient">Evening</span>
           </motion.h1>
@@ -66,7 +71,7 @@ export default function Reservations() {
       </section>
 
       {/* FORM SECTION - light */}
-      <section className="py-20 px-6 lg:px-12 bg-noir">
+      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-12 bg-noir">
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
           {/* FORM */}
           <motion.div
